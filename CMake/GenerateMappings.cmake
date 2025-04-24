@@ -1,7 +1,7 @@
 # Usage:
 # cmake -P GenerateMappings.cmake <path/to/mappings.h.in> <path/to/mappings.h>
 
-set(source_url "https://raw.githubusercontent.com/gabomdq/SDL_GameControllerDB/master/gamecontrollerdb.txt")
+set(source_url "https://gist.githubusercontent.com/afxgroup/28fd4bf01c95512a4da21bc5de0ba0b5/raw/b499e822e28ca8bb3d9ff52fb3a0c6402e9a1901/gamecontrollerdb.txt")
 set(source_path "${CMAKE_CURRENT_BINARY_DIR}/gamecontrollerdb.txt")
 set(template_path "${CMAKE_ARGV3}")
 set(target_path "${CMAKE_ARGV4}")
@@ -39,6 +39,11 @@ foreach(line ${lines})
                 string(APPEND GLFW_LINUX_MAPPINGS "\n")
             endif()
             string(APPEND GLFW_LINUX_MAPPINGS "\"${line}\",")
+        elseif (line MATCHES "platform:AmigaOS4")
+            if (GLFW_OS4_MAPPINGS)
+                string(APPEND GLFW_OS4_MAPPINGS "\n")
+            endif()
+            string(APPEND GLFW_OS4_MAPPINGS "\"${line}\",")
         endif()
     endif()
 endforeach()
