@@ -115,12 +115,12 @@ out:
 void _glfwPollMonitorsOS4(void)
 {
     const float dpi = 141.f;
-    const GLFWvidmode mode = getVideoMode();
     struct DimensionInfo diminfo;
     APTR handle;
     ULONG modeid;
     _glfw.os4.publicScreen = IIntuition->LockPubScreen(NULL);
     if (_glfw.os4.publicScreen != NULL) {
+        const GLFWvidmode mode = getVideoMode();
         IIntuition->GetScreenAttrs(_glfw.os4.publicScreen, SA_DisplayID, &modeid, TAG_DONE);
 
         handle = IGraphics->FindDisplayInfo(modeid);

@@ -78,6 +78,8 @@
 
 #define GID_ICONIFY 123
 
+#define GLFW_BUILD_OS4_JOYSTICK
+
 struct MyIntuiMessage
 {
     uint32 Class;

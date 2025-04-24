@@ -78,5 +78,10 @@ const char* _glfwDefaultMappings[] =
 #if defined(GLFW_BUILD_LINUX_JOYSTICK)
 @GLFW_LINUX_MAPPINGS@
 #endif // GLFW_BUILD_LINUX_JOYSTICK
+
+#if defined(GLFW_BUILD_OS4_JOYSTICK)
+@GLFW_OS4_MAPPINGS@
+#endif // GLFW_BUILD_OS4_JOYSTICK
+
 };
 
