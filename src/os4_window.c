@@ -342,7 +342,7 @@ static void updateCursorImage(_GLFWwindow* window, _GLFWcursor* cursor)
 
     if (cursor && cursor->os4.handle) {
         if (cursor->os4.handle != window->cursor->os4.currentHandle) {
-            printf("handle: %p\n", window->cursor->os4.handle);
+            IExec->DebugPrintF("handle: %p\n", window->cursor->os4.handle);
             IIntuition->SetWindowPointer(
                 window->os4.handle,
                 WA_Pointer, window->cursor->os4.handle,
@@ -531,11 +531,13 @@ void _glfwDestroyWindowOS4(_GLFWwindow* window)
     if (window->context.destroy)
         window->context.destroy(window);
 
-    struct Screen *screen = window->os4.handle->WScreen;
+    if (window->os4.handle != NULL) {
+        IIntuition->CloseWindow(window->os4.handle);
 
-    IIntuition->CloseWindow(window->os4.handle);
-
-    OS4_CloseScreen(screen);
+        struct Screen *screen = window->os4.handle->WScreen;
+        if (screen)
+            OS4_CloseScreen(screen);
+    }
 
     if (window->os4.gadget) {
         IIntuition->DisposeObject((Object *)window->os4.gadget);

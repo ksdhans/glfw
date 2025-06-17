@@ -628,6 +628,7 @@ GLFWbool _glfwConnectOS4(int platformID, _GLFWplatform *platform)
 
 int _glfwInitOS4(void)
 {
+    memset(&_glfw.os4, 0, sizeof(_glfw.os4));
     loadLibraries();
     createKeyTables();
 
